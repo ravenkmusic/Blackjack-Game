@@ -6,42 +6,44 @@ print(art.logo)
 
 user_quits = False
 
-def deal_card():
-  """Returns a random card from the deck."""
-  cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-  card = random.choice(cards)
-  return card
+while user_quits = False:
+  def deal_card():
+    """Returns a random card from the deck."""
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    card = random.choice(cards)
+    return card
 
-computer_hand = []
-user_hand = []
+  computer_hand = []
+  user_hand = []
 
-def calculate_score(cards):
-  """Calculates the score of both players"""
-  if sum(cards) == 21 and len(cards) == 2:
-    return 0
-  if sum(cards) > 21 and 11 in cards:
-    cards.remove(11)
-    cards.append(1)
-  
-  return sum(cards)
+  def calculate_score(cards):
+    """Calculates the score of both players"""
+    if sum(cards) == 21 and len(cards) == 2:
+      return 0
+    if sum(cards) > 21 and 11 in cards:
+      cards.remove(11)
+      cards.append(1)
+    
+    return sum(cards)
 
-for _ in range(2):
-  computer_hand.append(deal_card())
-  user_hand.append(deal_card())
+  for _ in range(2):
+    computer_hand.append(deal_card())
+    user_hand.append(deal_card())
 
-user_score = calculate_score(user_hand)
-print(f"Your cards: {user_hand}")
-print(user_score)
-computer_score = calculate_score(computer_hand)
-print(f"The computer's first card: {computer_hand[0]}")
+  user_score = calculate_score(user_hand)
+  print(f"Your cards: {user_hand}")
+  print(user_score)
+  computer_score = calculate_score(computer_hand)
+  print(f"The computer's first card: {computer_hand[0]}")
 
-if user_score or computer_score > 21 or user_score or computer_score == 0:
-  user_quits = True
-else:
-  input("Would you like to draw another card?")
-
-
-  #Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
+  if user_score or computer_score > 21 or user_score or computer_score == 0:
+    user_quits = True
+  else:
+    user_draws_again = input("Type 'y' to draw another card, type 'n' to pass. ")
+    if user_draws_again == "y":
+      user_hand.append(deal_card())
+    else:
+      user_quits = True
 
   #Hint 11: The score will need to be rechecked with every new card drawn and the checks in Hint 9 need to be repeated until the game ends.
 
