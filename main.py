@@ -21,10 +21,7 @@ def calculate_score(cards):
     return 0
   if sum(cards) > 21 and 11 in cards:
     cards.remove(11)
-      cards.append(1)
-  if sum(cards) > 21:
-    user_plays = False
-    print("Game over.")
+    cards.append(1)
   
   return sum(cards)
 
@@ -36,6 +33,9 @@ for _ in range(2):
 
 user_score = calculate_score(user_hand)
 computer_score = calculate_score(computer_hand)
+
+if user_score > 21:
+
 
   #Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
 
