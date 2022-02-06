@@ -7,30 +7,35 @@ print(art.logo)
 user_plays = True
 
 def deal_card():
+  """Returns a random card from the deck."""
   cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
   card = random.choice(cards)
   return card
 
-while user_plays:
-  computer_hand = []
-  user_hand = []
+computer_hand = []
+user_hand = []
 
-  for _ in range(2):
-      computer_hand.append(deal_card())
-      user_hand.append(deal_card())
-
-  def calculate_score(cards):
-    if sum(cards) == 21 and len(cards) == 2:
-      return 0
-    if sum(cards) > 21 and 11 in cards:
-      cards.remove(11)
+def calculate_score(cards):
+  """Calculates the score of both players"""
+  if sum(cards) == 21 and len(cards) == 2:
+    return 0
+  if sum(cards) > 21 and 11 in cards:
+    cards.remove(11)
       cards.append(1)
+  if sum(cards) > 21:
+    user_plays = False
+    print("Game over.")
   
-    return sum(cards)
+  return sum(cards)
+
+for _ in range(2):
+  computer_hand.append(deal_card())
+  user_hand.append(deal_card())
 
   #Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
 
-  calculate_score()
+user_score = calculate_score(user_hand)
+computer_score = calculate_score(computer_hand)
 
   #Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
 
