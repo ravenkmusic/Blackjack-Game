@@ -4,7 +4,7 @@ import art
 
 print(art.logo)
 
-user_plays = True
+user_quits = False
 
 def deal_card():
   """Returns a random card from the deck."""
@@ -29,12 +29,16 @@ for _ in range(2):
   computer_hand.append(deal_card())
   user_hand.append(deal_card())
 
-  #Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
-
 user_score = calculate_score(user_hand)
+print(f"Your cards: {user_hand}")
+print(user_score)
 computer_score = calculate_score(computer_hand)
+print(f"The computer's first card: {computer_hand[0]}")
 
-if user_score > 21:
+if user_score or computer_score > 21 or user_score or computer_score == 0:
+  user_quits = True
+else:
+  input("Would you like to draw another card?")
 
 
   #Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
