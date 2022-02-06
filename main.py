@@ -1,9 +1,7 @@
 ############### Blackjack Project #####################
 import random
-import art
 from replit import clear
-
-print(art.logo)
+from art import logo
 
 
 def deal_card():
@@ -19,7 +17,6 @@ def calculate_score(cards):
   if sum(cards) > 21 and 11 in cards:
     cards.remove(11)
     cards.append(1)
-  
   return sum(cards)
 
 def compare(user_score, computer_score):
@@ -31,16 +28,19 @@ def compare(user_score, computer_score):
     return "The computer got blackjack. You lose."
   elif user_score == 0:
     return "You got a perfect blackjack! You win!"
-  elif user_score > 21:
-    return "You busted. You lose."
   elif computer_score > 21:
     return "The computer's score went over. You win!"
   elif user_score > computer_score:
     return "You win!"
+  elif user_score > 21:
+    return "You busted. You lose."
   else:
     return "You lose!"
 
 def play_game():
+
+  print(logo)
+
   computer_hand = []
   user_hand = []
   user_quits = False
@@ -48,8 +48,6 @@ def play_game():
   for _ in range(2):
     computer_hand.append(deal_card())
     user_hand.append(deal_card())
-
-  calculate_score(user_hand)
 
   while not user_quits:
     user_score = calculate_score(user_hand)
@@ -71,11 +69,11 @@ def play_game():
     computer_hand.append(deal_card())
     computer_score = calculate_score(computer_hand)
 
-  print(f"Your final hand: {user_hand} with a score of {user_score}. /n The computer's final hand: {computer_hand} with a score of {computer_score}.")
+  print(f"Your final hand: {user_hand} with a score of {user_score}. \nThe computer's final hand: {computer_hand} with a score of {computer_score}.")
   print(compare(user_score, computer_score))
 
   #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
 
-while input("Do you wanna play another round? Type 'y' or 'n'. "):
+while input("Do you wanna play a round of Blackjack? Type 'y' or 'n'. "):
   clear()
   play_game()
